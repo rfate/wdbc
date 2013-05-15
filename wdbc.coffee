@@ -4,7 +4,7 @@ fs   = require 'fs'
 
 class DBC
   constructor: (@filename, @schema, auto_parse = true) ->
-    @schema ?= path.baseName(@filename, '.dbc')
+    @schema ?= path.basename(@filename, '.dbc')
     file = fs.readFileSync(@filename)
 
     @data = @parse(file, @schema) if auto_parse
