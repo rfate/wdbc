@@ -12,14 +12,16 @@ parse_string_block = (buf, file) ->
   strings
 
 module.exports = (buf, file_type) ->
-  throw "Unknown schema #{file_type}" unless Schema[file_type]
+  throw "Unknown schema #{file_type}" unless Schema[file_type] or file_type is 'debug'
   if buf.readUInt32LE(0) isnt Schema.MAGIC_NUMBER
     throw "File isn't valid DBC (missing magic number)"
 
   file =
     record_count:      buf.readUInt32LE(4)
     field_count:       buf.readUInt32LE(8)
-    record_size:       buf.readUInt32LE(12) 
+    record_size:       buf.readUInt32LE(12)
+
+  return file if file_type is 'debug'
 
   string_block_position = buf.length - buf.readUInt32LE(16)
 
