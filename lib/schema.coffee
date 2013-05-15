@@ -2,6 +2,7 @@ module.exports =
   MAGIC_NUMBER: 1128416343
   HEADER_SIZE: 20
 
+  AreaPOI: require './schema/AreaPOI'
   AreaTrigger: require './schema/AreaTrigger'
   CharStartOutfit: require './schema/CharStartOutfit'
   ChrClasses: require './schema/ChrClasses'
