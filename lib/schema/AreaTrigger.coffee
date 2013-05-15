@@ -1,0 +1,12 @@
+module.exports = [
+  ['int', 'id']
+  ['int', 'map_id']
+  ['float', 'x']
+  ['float', 'y']
+  ['float', 'z']
+  ['float', 'radius']
+  ['float', 'box_x']
+  ['float', 'box_y']
+  ['float', 'box_z']
+  ['float', 'box_orientation']
+]
