@@ -1,0 +1,22 @@
+{
+"author": {
+    "name": "Robert Fate"
+  },
+  "name": "wdbc",
+  "description": "A basic World of Warcraft DBC file manipulation library.",
+  "version": "0.0.1",
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:rfate/wdbc.git"
+  },
+  "main": "wdbc.coffee",
+  "dependencies":
+  {
+    "coffee-script": "1.6.x"
+  },
+  "engines":
+  {
+    "node": "0.8.x",
+    "npm":  "1.1.x"
+  } 
+}

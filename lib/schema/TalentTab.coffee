@@ -1,0 +1,10 @@
+module.exports = [
+  ['int', 'id']
+  ['string', 'name']
+  ['localization']
+  ['int', 'icon']
+  ['uint', 'unk0']
+  ['uint', 'classes']
+  ['uint', 'tab_number']
+  ['string', 'background_image']
+]
