@@ -17,15 +17,15 @@ module.exports = (buf, file_type) ->
     throw "File isn't valid DBC (missing magic number)"
 
   file =
-    record_count:      buf.readUInt32LE(4)
-    field_count:       buf.readUInt32LE(8)
-    record_size:       buf.readUInt32LE(12)
+    record_count: buf.readUInt32LE(4)
+    field_count:  buf.readUInt32LE(8)
+    record_size:  buf.readUInt32LE(12)
 
   return file if file_type is 'debug'
 
   string_block_position = buf.length - buf.readUInt32LE(16)
 
-  strings = parse_string_block(buf.slice(string_block_position), file)
+  file.strings = parse_string_block(buf.slice(string_block_position), file)
 
   record_block = buf.slice(20, string_block_position)
 
@@ -45,7 +45,7 @@ module.exports = (buf, file_type) ->
         record[field] = record_data.readInt8(ptr)
         ptr += 1
       else if type is 'string'
-        record[field] = strings[record_data.readInt32LE(ptr)]
+        record[field] = file.strings[record_data.readInt32LE(ptr)]
         ptr += 4
       else if type is 'localization'
         record['localization_mask'] = record_data.readInt32LE(ptr+4*7)
