@@ -3,13 +3,18 @@ Schema = require './schema'
 parse_string_block = (buf, file) ->
   strings = {}
   ptr = 0
+  current_string = ''
 
-  # TODO: check performance against iterating through buffer without #toString
-  for str in buf.toString().split("\u0000")
-    strings[ptr] = str
-    ptr += str.length + 1
+  for byte in buf
+    if byte is 0
+      strings[ptr - current_string.length] = current_string
+      current_string = ''
+    else
+      current_string += String.fromCharCode(byte)
 
-  strings
+    ptr++
+
+  return strings
 
 module.exports = (buf, file_type) ->
   throw "Unknown schema #{file_type}" unless Schema[file_type] or file_type is 'debug'
